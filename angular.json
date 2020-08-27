@@ -5,7 +5,17 @@
   "projects": {
     "cmail": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "prefix": "cmail",
+          "inlineStyle": true,
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "prefix": "cmail",
+          "skipTests": true
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
