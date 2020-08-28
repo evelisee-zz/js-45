@@ -3,25 +3,32 @@
     <main class="mdl-layout__content">
       <div class="page-content">
         <div class="mdl-grid">
-          <form>
+          <form [formGroup]="formCadastro" (ngSubmit)="cadastrar()">
 
-            <cmail-form-group>
-                <input autofocus required type="text" name="nome" cmailFormField>
+            <cmail-form-group [campo]="formCadastro.get('nome')">
+                <input autofocus required minlength="2" type="text" name="nome" formControlName="nome" cmailFormField>
                 <span class="mdl-textfield__error">Informar um nome é obrigatório</span>
             </cmail-form-group>
 
-            <cmail-form-group>
-                <input required type="text" name="username" cmailFormField>
+            <cmail-form-group [campo]="formCadastro.get('username')">
+                <input required type="text" name="username" formControlName="username" cmailFormField>
                 <span class="mdl-textfield__error">Informar um username é obrigatório</span>
             </cmail-form-group>
 
-            <cmail-form-group>
-                <input required type="password" name="senha" cmailFormField>
+            <cmail-form-group [campo]="formCadastro.get('senha')">
+                <input required type="password" name="senha" formControlName="senha" cmailFormField>
                 <span class="mdl-textfield__error">Informar um senha é obrigatório</span>
             </cmail-form-group>
 
-            <cmail-form-group>
-                <input type="text" name="avatar" cmailFormField>
+          <cmail-form-group [campo]="formCadastro.get('telefone')">
+              <input type="text" name="telefone" formControlName="telefone" cmailFormField>
+              <span class="mdl-textfield__error" *ngIf="formCadastro.get('telefone').errors?.pattern">
+                O telefone deve conter 8 ou 9 números
+              </span>
+          </cmail-form-group>
+
+            <cmail-form-group [campo]="formCadastro.get('avatar')">
+                <input type="text" name="avatar" formControlName="avatar" cmailFormField>
             </cmail-form-group>
   
             <div class="mdl-card__actions">
