@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpClient, HttpResponseBase, HttpErrorResponse } from '@angular/common/http';
+import { map, catchError, retry } from 'rxjs/operators';
+import { UserDTO } from 'src/app/models/user';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-cadastro',
@@ -7,6 +12,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./cadastro.component.css']
 })
 export class CadastroComponent implements OnInit {
+
+  mensagensErro = [];
+
 
   telefoneValidator = Validators.compose([
     Validators.required,
@@ -19,21 +27,49 @@ export class CadastroComponent implements OnInit {
     username: new FormControl('', Validators.required),
     senha: new FormControl('', Validators.required),
     telefone: new FormControl('', this.telefoneValidator),
-    avatar: new FormControl('', Validators.required)
+    avatar: new FormControl('', [Validators.required], this.validaImagem.bind(this))
   });
 
-    constructor() { }
+    constructor(
+      private httpClient: HttpClient,
+      private router: Router
+    ) { 
+    }
   
     ngOnInit(): void {
     }
 
-    
+    validaImagem(campoDoFormulario: FormControl) {
+      return this.httpClient
+        .head(campoDoFormulario.value, {
+          observe: 'response'
+        })
+        .pipe(
+          map((response: HttpResponseBase) => {
+            return response.ok ? null : [{ urlInvalida: true }]
+          }),
+          catchError((error) => {
+            return [{ urlInvalida: true}];
+          }),
+        )
+    }
+
     cadastrar() {
-      console.log(this.formCadastro.get('telefone'))
+
     if(this.formCadastro.valid){
-      console.log('Deu certo');
+      const userData = new UserDTO(this.formCadastro.value);
+      this.httpClient.post('http://localhost:3200/users', userData)
+      .subscribe(
+        () => {
+          alert('Deu bom');
+          this.formCadastro.reset();
+          this.router.navigate(['']);
+        }
+        , (responseError: HttpErrorResponse) => {
+          this.mensagensErro = responseError.error.body
+        }
+      )
     } else {
-      console.log(this.formCadastro);
       this.formCadastro.markAllAsTouched()
     }
   }

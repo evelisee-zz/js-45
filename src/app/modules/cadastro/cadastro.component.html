@@ -29,7 +29,16 @@
 
             <cmail-form-group [campo]="formCadastro.get('avatar')">
                 <input type="text" name="avatar" formControlName="avatar" cmailFormField>
+                <span class="mdl-textfield__error mdl-textfield__checking" *ngIf="formCadastro.get('avatar').status === 'PENDING'">Validação pendente...</span>
+                <span class="mdl-textfield__error mdl-textfield__valid" *ngIf="formCadastro.get('avatar').status === 'VALID'">Url válida</span>
+                <span class="mdl-textfield__error" *ngIf="formCadastro.get('avatar').status === 'INVALID'">Error na Url informada</span>
             </cmail-form-group>
+
+            <ul *ngIf="mensagensErro">
+              <li *ngFor="let erro of mensagensErro">
+                {{erro.message}}: {{erro.value}}
+              </li>
+            </ul>
   
             <div class="mdl-card__actions">
               <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
