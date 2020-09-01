@@ -15,7 +15,7 @@ interface ResponseLogin {
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  login: LoginForm = {
+  login = {
     email: '',
     senha: ''
   }
@@ -24,8 +24,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(private httpClient: HttpClient) {}
 
   handleLogin(formLogin: NgForm){
     if(formLogin.valid){

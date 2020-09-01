@@ -2,9 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpResponseBase, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError, retry } from 'rxjs/operators';
-import { UserDTO } from 'src/app/models/user';
+import { UserDTO } from 'src/app/models/UserDto';
 import { Router } from '@angular/router';
 
+type Mensagem = {
+  [key: string]: string;
+}
 
 @Component({
   selector: 'app-cadastro',
@@ -13,8 +16,7 @@ import { Router } from '@angular/router';
 })
 export class CadastroComponent implements OnInit {
 
-  mensagensErro = [];
-
+  mensagensErro: Mensagem[] = [];
 
   telefoneValidator = Validators.compose([
     Validators.required,
@@ -48,7 +50,7 @@ export class CadastroComponent implements OnInit {
           map((response: HttpResponseBase) => {
             return response.ok ? null : [{ urlInvalida: true }]
           }),
-          catchError((error) => {
+          catchError(() => {
             return [{ urlInvalida: true}];
           }),
         )
@@ -61,7 +63,6 @@ export class CadastroComponent implements OnInit {
       this.httpClient.post('http://localhost:3200/users', userData)
       .subscribe(
         () => {
-          alert('Deu bom');
           this.formCadastro.reset();
           this.router.navigate(['']);
         }

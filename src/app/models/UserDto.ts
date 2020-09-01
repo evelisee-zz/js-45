@@ -1,3 +1,11 @@
+export interface User {
+    nome: string;
+    username: string;
+    senha: string;
+    telefone: string;
+    avatar: string;
+}
+
 export class UserDTO {
     name = "";
     username = "";
@@ -5,7 +13,7 @@ export class UserDTO {
     phone = "";
     avatar = "";
 
-    constructor({ nome, username, senha, telefone, avatar}){
+    constructor({ nome, username, senha, telefone, avatar}: User){
         this.name = nome;
         this.username = username;
         this.password = senha;

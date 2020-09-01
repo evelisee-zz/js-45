@@ -19,7 +19,7 @@
           </button>
   
           <!-- newEmail--active -->
-          <form #formEmail="ngForm" class="newEmail cmailForm" [ngClass]="{ 'newEmail--active': isNewEmailFormOpen }" (ngSubmit)="handleNewEmail(formEmail)">
+          <form #formEmail="ngForm" class="newEmail cmailForm" [ngClass]="{ 'newEmail--active': isNewEmailFormOpen }" (ngSubmit)="handleNewEmail()">
             <div class="newEmail__card demo-card-wide mdl-card mdl-shadow--2dp">
               <div class="newEmail__titleArea mdl-card__title">
                 <h2 class="newEmail__title mdl-card__title-text">Novo Email</h2>

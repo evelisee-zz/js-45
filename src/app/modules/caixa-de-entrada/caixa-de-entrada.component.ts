@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+
+interface Email {
+  destinatario: string;
+  assunto: string;
+  conteudo: string;
+}
 
 @Component({
   selector: 'app-caixa-de-entrada',
@@ -8,13 +13,12 @@ import { NgForm } from '@angular/forms';
 })
 export class CaixaDeEntradaComponent  {
   private _isNewEmailFormOpen = false;
-  title = "cmail"
   email = {
     destinatario: '',
     assunto: '',
     conteudo: ''
   }
-  listaEmails = [];
+  listaEmails: Email[] = [];
 
   get isNewEmailFormOpen() {
     return this._isNewEmailFormOpen;
@@ -24,8 +28,7 @@ export class CaixaDeEntradaComponent  {
     this._isNewEmailFormOpen = !this._isNewEmailFormOpen;
   }
 
-  handleNewEmail(formEmail: NgForm) {
-    console.log(formEmail);
+  handleNewEmail() {
     this.listaEmails.push(this.email);
   }
 
