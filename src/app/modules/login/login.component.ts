@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {  HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
-import { LoginForm, LoginDTO } from 'src/app/models/LoginDto';
+import {  LoginDTO } from 'src/app/models/LoginDto';
+import { LoginService } from 'src/app/services/login.service';
+import { Router } from '@angular/router';
 
-interface ResponseLogin {
+export interface ResponseLogin {
   email: string;
   avatar: string;
   token: string;
@@ -24,22 +26,34 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private loginService: LoginService,
+    private router: Router) {
+
+    }
 
   handleLogin(formLogin: NgForm){
     if(formLogin.valid){
       const loginUser = new LoginDTO(this.login);
 
-      this.httpClient
-        .post('http://localhost:3200/login', loginUser)
-        .subscribe(
-          (response: ResponseLogin) => {
-            localStorage.setItem('cmail-token', response.token);
-          },
-          (responseError: HttpErrorResponse) => {
-            this.mensagemError = responseError.error.body
-          }
-        )
+      this.loginService.logar(loginUser)
+      .subscribe(
+        () => this.router.navigate(['/inbox']),
+        (responseError: HttpErrorResponse) => {
+          this.mensagemError = responseError.error.body;
+        }
+      )
+
+      // this.httpClient
+      //   .post('http://localhost:3200/login', loginUser)
+      //   .subscribe(
+      //     (response: ResponseLogin) => {
+      //       localStorage.setItem('cmail-token', response.token);
+      //     },
+      //     (responseError: HttpErrorResponse) => {
+      //       this.mensagemError = responseError.error.body
+      //     }
+      //   )
     }
   }
 

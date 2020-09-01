@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpResponseBase, HttpErrorResponse } from '@angular/common/http';
-import { map, catchError, retry } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import { UserDTO } from 'src/app/models/UserDto';
 import { Router } from '@angular/router';
 

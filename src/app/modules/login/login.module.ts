@@ -6,6 +6,7 @@ import { LoginRoutingModule } from './login-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { SharedComponentsModule } from 'src/app/shared/shared.module';
+import { LoginService } from 'src/app/services/login.service';
 
 
 @NgModule({
@@ -21,6 +22,9 @@ import { SharedComponentsModule } from 'src/app/shared/shared.module';
   ],
   exports: [
     RouterModule
+  ],
+  providers: [
+    LoginService
   ]
 })
 export class LoginModule { }
