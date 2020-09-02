@@ -4,6 +4,12 @@ import { environment } from 'src/environments/environment';
 import { EmailDto } from '../models/EmailDto';
 import { map } from 'rxjs/operators';
 
+interface EmailView {
+    destinatario: string;
+    assunto: string
+    conteudo: string
+}
+
 @Injectable()
 export class EmailService {
 
@@ -18,7 +24,7 @@ export class EmailService {
         })
     }
 
-    enviar({destinatario, assunto, conteudo}){
+    enviar({destinatario, assunto, conteudo}: EmailView){
         const emailParaApi = {
             to: destinatario,
             subject: assunto,

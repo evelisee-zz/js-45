@@ -1,4 +1,4 @@
-import { LoginForm } from './login.interface';
+import { LoginForm } from './Login';
 
 export class LoginDTO {
     email = "";

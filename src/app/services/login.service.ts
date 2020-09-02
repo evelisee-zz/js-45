@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { ResponseLogin } from '../modules/login/login.component';
 import { Observable } from 'rxjs';
-import { LoginAPI } from '../models/login.interface';
+import { LoginAPI } from '../models/Login';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
