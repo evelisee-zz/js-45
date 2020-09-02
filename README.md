@@ -2,26 +2,34 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.9.
 
-## Development server
+## Primeiros Passos
+ - Clone este repositório na sua máquina
+ - `npm i` : Instalar as dependências definidas no `package.json`
+ - `npm start` para inicializar sua aplicação sem precisar ter o angular cli instalado (O projeto abrirá na porta: `http://localhost:4200/`).
+ - `ng serve` para inicializar sua aplicação usando angular cli.
+ 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+ 
+## Scaffolding
 
-## Code scaffolding
+- `ng generate component component-name` Para gerar components novos (não esqueça de passar o caminho antes do nome do component).
+- `ng generate directive|pipe|service|class|guard|interface|enum|module`: Outras opções, caso precisa olhar mais a fundo acesse a documentação do [Ng generate](https://angular.io/cli/generate)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Publicando
 
-## Build
+- `ng build` para publicar sua aplicação! O projeto estará disponível na pastar `dist/`.
+- `ng build --prod` para publicar para produção usando o envirnoment de prod! (Pasta `src/environments/environments.prod.ts`).
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Testes unitários
+- `ng test` para executar os testes unitários da aplicação (arquivos .spec.ts) [Documentação Karma](https://karma-runner.github.io)
 
-## Running unit tests
+## Testes end-to-end
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- `ng e2e`para executar os testes unitários via [Protractor](http://www.protractortest.org/).
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Links úteis
+ - [Observable design pattern](https://refactoring.guru/pt-br/design-patterns/observer)
+ - [Compilador do babel](https://babeljs.io/repl#?browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=MYewdgzgLgBARgVylcMC8MAUAHATibCASnQD4YBvAKBlplEhABsBTAOiZAHMd9CiA3FQC-QA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.10.5&externalPlugins=)
+- [Node version management](https://github.com/tj/n)
+- [Clean Code typescript](https://github.com/labs42io/clean-code-typescript) 
