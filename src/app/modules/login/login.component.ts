@@ -43,17 +43,6 @@ export class LoginComponent implements OnInit {
           this.mensagemError = responseError.error.body;
         }
       )
-
-      // this.httpClient
-      //   .post('http://localhost:3200/login', loginUser)
-      //   .subscribe(
-      //     (response: ResponseLogin) => {
-      //       localStorage.setItem('cmail-token', response.token);
-      //     },
-      //     (responseError: HttpErrorResponse) => {
-      //       this.mensagemError = responseError.error.body
-      //     }
-      //   )
     }
   }
 

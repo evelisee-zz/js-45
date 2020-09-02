@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { EmailService } from 'src/app/services/email.service';
+import { NgForm } from '@angular/forms';
 
 interface Email {
   destinatario: string;
@@ -20,6 +22,8 @@ export class CaixaDeEntradaComponent  {
   }
   listaEmails: Email[] = [];
 
+  constructor(private emailService: EmailService){}
+
   get isNewEmailFormOpen() {
     return this._isNewEmailFormOpen;
   }
@@ -28,8 +32,22 @@ export class CaixaDeEntradaComponent  {
     this._isNewEmailFormOpen = !this._isNewEmailFormOpen;
   }
 
-  handleNewEmail() {
-    this.listaEmails.push(this.email);
+  handleNewEmail(formEmail: NgForm) {
+    if(formEmail.invalid) return;
+
+    this.emailService.enviar(this.email)
+    .subscribe(
+      emailDaApi => {
+        this.listaEmails.push(emailDaApi);
+        this.email = {
+          destinatario: '',
+          assunto: '',
+          conteudo: ''
+        }
+        formEmail.reset();
+      },
+      erro => console.log(erro)
+    )
   }
 
 }

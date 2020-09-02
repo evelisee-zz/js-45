@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { ResponseLogin } from '../modules/login/login.component';
 import { Observable } from 'rxjs';
 import { LoginAPI } from '../models/login.interface';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class LoginService {
@@ -12,14 +13,13 @@ export class LoginService {
         private http: HttpClient
     ){}
 
-    api = 'http://localhost:3200/login';
+    api = `${environment.apiUrl}login`;
 
     logar(dadosLogin: LoginAPI): Observable<ResponseLogin> {
         return this.http.post(this.api, dadosLogin)
         .pipe(
             map((response: ResponseLogin) => {
                 localStorage.setItem('cmail-token', response.token);
-                document.cookie = `cmail-token=${response.token}`
                 return response;
             })
         );
