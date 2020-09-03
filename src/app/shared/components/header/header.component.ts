@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'cmail-header',
@@ -7,7 +8,10 @@ import { Component } from '@angular/core';
 })
 
 export class HeaderComponent {
+    
     private _isMenuOpen = false;
+    
+    constructor(private router: Router){}
 
     get isMenuOpen() {
         return this._isMenuOpen;
@@ -15,5 +19,10 @@ export class HeaderComponent {
 
     toggleMenu() {
         this._isMenuOpen = !this._isMenuOpen;
+    }
+
+    logout() {
+        localStorage.removeItem('cmail-token');
+        this.router.navigate(['login']);
     }
 }

@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { EmailService } from 'src/app/services/email.service';
 import { NgForm } from '@angular/forms';
 
-interface Email {
+export interface Email {
   destinatario: string;
   assunto: string;
   conteudo: string;
+  introducaoDoConteudo: string;
+  dataDeEnvio: string;
 }
 
 @Component({
@@ -13,7 +15,7 @@ interface Email {
   templateUrl: './caixa-de-entrada.component.html',
   styleUrls: ['./caixa-de-entrada.component.css']
 })
-export class CaixaDeEntradaComponent  {
+export class CaixaDeEntradaComponent implements OnInit  {
   private _isNewEmailFormOpen = false;
   email = {
     destinatario: '',
@@ -22,7 +24,18 @@ export class CaixaDeEntradaComponent  {
   }
   listaEmails: Email[] = [];
 
-  constructor(private emailService: EmailService){}
+  
+  constructor(
+    private emailService: EmailService,
+  ){}
+
+  ngOnInit() {
+    this.emailService.listar()
+    .subscribe(lista => {
+      this.listaEmails = lista
+    })
+  }
+
 
   get isNewEmailFormOpen() {
     return this._isNewEmailFormOpen;

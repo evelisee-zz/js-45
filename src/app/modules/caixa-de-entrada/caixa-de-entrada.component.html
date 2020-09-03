@@ -2,12 +2,17 @@
     <cmail-header></cmail-header>
     <main class="mdl-layout__content">
       <div class="page-content">
-  
+
+        
         <ul>
           <li *ngFor="let email of listaEmails">
-            {{email.destinatario}}
-            {{email.assunto}}
-            {{email.mensagem}}
+            <cmail-list-item 
+              [destinatario]="email.destinatario"
+              [asssunto]="email.assunto" 
+              [dataDeEnvio]="email.dataDeEnvio"
+              [introducaoDoConteudo]="email.introducaoDoConteudo"
+            >
+          </cmail-list-item>
           </li>
         </ul>
   

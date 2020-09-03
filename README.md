@@ -33,3 +33,4 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
  - [Compilador do babel](https://babeljs.io/repl#?browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=MYewdgzgLgBARgVylcMC8MAUAHATibCASnQD4YBvAKBlplEhABsBTAOiZAHMd9CiA3FQC-QA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.10.5&externalPlugins=)
 - [Node version management](https://github.com/tj/n)
 - [Clean Code typescript](https://github.com/labs42io/clean-code-typescript) 
+- [Usando classes abstratas no constructor de components](https://stackblitz.com/edit/angular-yqvlv7?file=src%2Fapp%2Fapp.module.ts)

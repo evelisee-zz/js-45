@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { EmailDto } from '../models/EmailDto';
+import { EmailDto, EmailApi } from '../models/EmailDto';
 import { map } from 'rxjs/operators';
+import { Email } from '../modules/caixa-de-entrada/caixa-de-entrada.component';
 
 interface EmailView {
     destinatario: string;
@@ -35,6 +36,19 @@ export class EmailService {
             map(
                 (emailDaApi: any) => {
                     return new EmailDto(emailDaApi);
+                }
+            )
+        )
+
+    }
+
+    listar() {
+        return this.http
+        .get(this.api, this.httpOptions)
+        .pipe<Email[]>(
+            map(
+                (listaDeEmails: any) => {
+                    return listaDeEmails.map((valor: EmailApi) => new EmailDto(valor));
                 }
             )
         )
