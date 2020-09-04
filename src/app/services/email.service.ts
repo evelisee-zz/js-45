@@ -54,4 +54,8 @@ export class EmailService {
         )
 
     }
+
+    deletar(id: string){
+        return this.http.delete(`${this.api}/${id}`, this.httpOptions)
+    }
 }

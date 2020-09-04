@@ -4,6 +4,7 @@ import { HttpClient, HttpResponseBase, HttpErrorResponse } from '@angular/common
 import { map, catchError } from 'rxjs/operators';
 import { UserDTO } from 'src/app/models/UserDto';
 import { Router } from '@angular/router';
+import { PageService } from 'src/app/services/page.service';
 
 type Mensagem = {
   [key: string]: string;
@@ -34,11 +35,12 @@ export class CadastroComponent implements OnInit {
 
     constructor(
       private httpClient: HttpClient,
-      private router: Router
-    ) { 
-    }
-  
+      private router: Router,
+      private pageService: PageService
+    ) {}
+    
     ngOnInit(): void {
+      this.pageService.enviaTitulo('Cadastro');
     }
 
     validaImagem(campoDoFormulario: FormControl) {

@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import {  LoginDTO } from 'src/app/models/LoginDto';
 import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
+import { PageService } from 'src/app/services/page.service';
 
 export interface ResponseLogin {
   email: string;
@@ -28,8 +29,10 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private loginService: LoginService,
-    private router: Router) {
-
+    private router: Router,
+    private pageService: PageService
+    ) {
+      this.pageService.enviaTitulo('Login');
     }
 
   handleLogin(formLogin: NgForm){

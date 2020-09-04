@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { EmailService } from 'src/app/services/email.service';
 import { NgForm } from '@angular/forms';
+import { PageService } from 'src/app/services/page.service';
 
 export interface Email {
+  id: string;
   destinatario: string;
   assunto: string;
   conteudo: string;
@@ -27,13 +29,16 @@ export class CaixaDeEntradaComponent implements OnInit  {
   
   constructor(
     private emailService: EmailService,
+    private pageService: PageService
   ){}
 
   ngOnInit() {
     this.emailService.listar()
     .subscribe(lista => {
       this.listaEmails = lista
-    })
+    });
+
+    this.pageService.enviaTitulo('Caixa de Entrada');
   }
 
 
@@ -61,6 +66,16 @@ export class CaixaDeEntradaComponent implements OnInit  {
       },
       erro => console.log(erro)
     )
+  }
+
+  removeEmail(id: string){
+    console.log(id);
+    this.emailService.deletar(id)
+    .subscribe(resp => {
+      console.log(resp);
+      this.listaEmails = this.listaEmails.filter(email => email.id != id);
+    },
+    erro => console.log(erro))
   }
 
 }
