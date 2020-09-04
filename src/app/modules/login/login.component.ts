@@ -8,8 +8,9 @@ import { PageService } from 'src/app/services/page.service';
 
 export interface ResponseLogin {
   email: string;
-  avatar: string;
+  avatarUrl: string;
   token: string;
+  name: string;
 }
 
 @Component({

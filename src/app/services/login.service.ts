@@ -20,6 +20,10 @@ export class LoginService {
         .pipe(
             map((response: ResponseLogin) => {
                 localStorage.setItem('cmail-token', response.token);
+                localStorage.setItem('name', response.name);
+                localStorage.setItem('avatarUrl', response.avatarUrl);
+                localStorage.setItem('email', response.email);
+                localStorage.setItem('jsonLogin', JSON.stringify(response));
                 return response;
             })
         );

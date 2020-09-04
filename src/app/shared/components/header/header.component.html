@@ -29,10 +29,13 @@
     </span>
   
     <header class="headerGlobal__userInfo">
-      <img src="http://placehold.it/48x48" class="headerGlobal__userInfoAvatar">
+      <!-- src="http://placehold.it/48x48"  -->
+      <img 
+        [src]="userInfo.avatarUrl"
+        class="headerGlobal__userInfoAvatar">
       <div class="headerGlobal__userInfoData">
-        <h5 class="headerGlobal__userInfoDataName">Pessoa de Tal</h5>
-        <span>pesso.al@cmail.br</span>
+        <h5 class="headerGlobal__userInfoDataName">{{userInfo.name}}</h5>
+        <span>{{userInfo.email}}</span>
         <div class="mdl-layout-spacer"></div>
       </div>
     </header>
