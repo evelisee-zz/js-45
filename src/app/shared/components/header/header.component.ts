@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PageService } from 'src/app/services/page.service';
+import { HeaderService } from 'src/app/services/header.service';
 
 @Component({
     selector: 'cmail-header',
@@ -20,7 +21,8 @@ export class HeaderComponent implements OnInit{
 
     constructor(
         private router: Router,
-        private pageService: PageService
+        private pageService: PageService,
+        private headerService: HeaderService,
         ){
             this.pageService.titulo.subscribe(novoTitulo => this.tituloDaPagina = novoTitulo);
         }
@@ -43,5 +45,10 @@ export class HeaderComponent implements OnInit{
     logout() {
         localStorage.removeItem('cmail-token');
         this.router.navigate(['login']);
+    }
+
+
+    handleBuscaChange({target}){
+        this.headerService.atualizarTermoDeFiltro(target.value);
     }
 }

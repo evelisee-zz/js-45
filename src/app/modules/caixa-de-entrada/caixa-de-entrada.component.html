@@ -2,10 +2,9 @@
     <cmail-header></cmail-header>
     <main class="mdl-layout__content">
       <div class="page-content">
-
         
         <ul>
-          <li *ngFor="let email of listaEmails">
+          <li *ngFor="let email of filtrarEmailPorAssunto()">
             <cmail-list-item 
               [destinatario]="email.destinatario"
               [asssunto]="email.assunto" 

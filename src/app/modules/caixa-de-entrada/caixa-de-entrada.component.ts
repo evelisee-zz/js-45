@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmailService } from 'src/app/services/email.service';
 import { NgForm } from '@angular/forms';
 import { PageService } from 'src/app/services/page.service';
+import { HeaderService } from 'src/app/services/header.service';
 
 export interface Email {
   id: string;
@@ -25,11 +26,13 @@ export class CaixaDeEntradaComponent implements OnInit  {
     conteudo: ''
   }
   listaEmails: Email[] = [];
+  termoParaFiltro = "";
 
   
   constructor(
     private emailService: EmailService,
-    private pageService: PageService
+    private pageService: PageService,
+    private headerService: HeaderService,
   ){}
 
   ngOnInit() {
@@ -39,6 +42,11 @@ export class CaixaDeEntradaComponent implements OnInit  {
     });
 
     this.pageService.enviaTitulo('Caixa de Entrada');
+    this.headerService.valorDoFiltro
+      .subscribe(novoValor => {
+      this.termoParaFiltro = novoValor
+    })
+
   }
 
 
@@ -76,6 +84,15 @@ export class CaixaDeEntradaComponent implements OnInit  {
       this.listaEmails = this.listaEmails.filter(email => email.id != id);
     },
     erro => console.log(erro))
+  }
+
+  filtrarEmailPorAssunto(){
+    const termoParaFiltroEmMinusculo = this.termoParaFiltro.toLowerCase();
+
+    return this.listaEmails.filter(email => {
+      const assunto = email.assunto.toLowerCase();
+      return assunto.includes(termoParaFiltroEmMinusculo);
+    })
   }
 
 }

@@ -5,6 +5,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { CmailFormFieldDirective } from './components/cmail-form-group/cmail-form-field.directive';
 import { CmailFormGroupComponent } from './components/cmail-form-group/cmail-form-group.component';
 import { CmailListItemComponent } from './components/cmail-list-item/cmail-list-item.component';
+import { MarcadorPipe } from './pipes/marcador.pipe';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { CmailListItemComponent } from './components/cmail-list-item/cmail-list-
     CmailFormFieldDirective,
     CmailFormGroupComponent,
     CmailListItemComponent,
+    MarcadorPipe
   ],
   imports: [
     CommonModule,
