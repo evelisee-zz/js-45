@@ -34,3 +34,4 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - [Node version management](https://github.com/tj/n)
 - [Clean Code typescript](https://github.com/labs42io/clean-code-typescript) 
 - [Usando classes abstratas no constructor de components](https://stackblitz.com/edit/angular-yqvlv7?file=src%2Fapp%2Fapp.module.ts)
+- [Unsubscribe with decorators](https://netbasal.com/automagically-unsubscribe-in-angular-4487e9853a88)
